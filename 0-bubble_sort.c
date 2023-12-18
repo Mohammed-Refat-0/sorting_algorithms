@@ -28,10 +28,10 @@ void bubble_sort(int *array, size_t size)
 				array[j] = array[k];
 				array[k] = temp;
 				flag = 1;
+				print_array(array, size);
 			}
 			j++;
 			k++;
 		}
-		print_array(array, size);
 	}
 }
