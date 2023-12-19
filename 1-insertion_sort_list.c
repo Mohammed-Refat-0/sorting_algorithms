@@ -18,11 +18,11 @@ void insertion_sort_list(listint_t **list)
 	ptr = (*list);
 	temp = (*list)->next;
 
-	while (temp)
+	while (temp != NULL)
 	{
 		ptr = temp;
 		temp = temp->next;
-		while (ptr && ptr->prev)
+		while (ptr != NULL && ptr->prev != NULL)
 		{
 			if (ptr->prev->n > ptr->n)
 			{
