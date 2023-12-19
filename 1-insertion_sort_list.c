@@ -22,22 +22,22 @@ void insertion_sort_list(listint_t **list)
         temp = temp->next;
         while (ptr != NULL && ptr->prev != NULL && ptr->prev->n > ptr->n)
         {
-            listint_t *prev_node = ptr->prev;
-            listint_t *next_node = ptr->next;
+            listint_t *prevn = ptr->prev;
+            listint_t *nextn = ptr->next;
 
-            if (prev_node->prev)
+            if (prevn->prev)
 			{
-				prev_node->prev->next = ptr;
+				prevn->prev->next = ptr;
 			}
-            if (next_node)
+            if (nextn)
 			{
-				next_node->prev = prev_node;
+				nextn->prev = prevn;
 			}
 
-            ptr->prev = prev_node->prev;
-            prev_node->next = next_node;
-            prev_node->prev = ptr;
-            ptr->next = prev_node;
+            ptr->prev = prevn->prev;
+            prevn->next = nextn;
+            prevn->prev = ptr;
+            ptr->next = prevn;
 
             if (!ptr->prev)
 			{
