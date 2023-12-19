@@ -6,46 +6,53 @@
  * @array: arry to sort
  * @lowerbound: lower limit to partition the array by
  * @upperbound: upper limit to partition the array by
+ * @size: size of array
+ * Return: int index of pivot
  */
-size_t quick_sort_partition(int *array, size_t lowerbound, size_t upperbound, size_t size)
+int quick_sort_partition(int *array, int lowerbound, int upperbound,
+		size_t size)
 {
-    int temp;
-    size_t j;
-    size_t i = lowerbound - 1;
-    int pivot = array[upperbound];
+	int temp;
+	int j;
+	int i = lowerbound - 1;
+	int pivot = array[upperbound];
 
-   for (j = lowerbound; j <= upperbound - 1; j++)
-   {
-       if (array[j] < pivot)
-       {
-           i++;
-           temp = array[i];
-           array[i] = array[j];
-           array[j] = temp;
-           print_array(array, size);
-       }
-   }
-   temp = array[i + 1];
-   array[i + 1] = array[upperbound];
-   array[upperbound] = temp;
-   print_array(array, size);
-   return (i + 1);
+	for (j = lowerbound; j <= upperbound; j++)
+	{
+		if (pivot >= array[j])
+		{
+			i++;
+			if (j != i)
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
+		}
+	}
+	return (i);
 }
+
 
 /**
  * quick_sort_recurision-  recursive function to implment quick sort
  * @array: arry to sort
  * @lowerbound: lower limit to partition the array by
  * @upperbound: upper limit to partition the array by
+ * @size: length of array
  */
-void quick_sort_recurision(int *array, size_t lowerbound, size_t upperbound, size_t size)
+void quick_sort_recurision(int *array, int lowerbound, int upperbound,
+		size_t size)
 {
-    if (upperbound > lowerbound)
-    {
-        size_t index_pivot = quick_sort_partition(array, lowerbound, upperbound, size);
-        quick_sort_recurision(array, lowerbound, index_pivot - 1, size);
-        quick_sort_recurision(array, index_pivot + 1, upperbound, size);
-    }
+	int index_pivot;
+
+	if (upperbound - lowerbound > 0)
+	{
+		index_pivot = quick_sort_partition(array, lowerbound, upperbound, size);
+		quick_sort_recurision(array, lowerbound, index_pivot - 1, size);
+		quick_sort_recurision(array, index_pivot + 1, upperbound, size);
+	}
 }
 
 /**
@@ -56,5 +63,10 @@ void quick_sort_recurision(int *array, size_t lowerbound, size_t upperbound, siz
  */
 void quick_sort(int *array, size_t size)
 {
-    quick_sort_recurision(array, 0, size - 1, size);
+	if (array == NULL)
+	{
+		return;
+	}
+
+	quick_sort_recurision(array, 0, size - 1, size);
 }
