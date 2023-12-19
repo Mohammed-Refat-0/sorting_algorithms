@@ -47,7 +47,7 @@ void quick_sort_recurision(int *array, int lowerbound, int upperbound,
 {
 	int index_pivot;
 
-	if (upperbound - lowerbound > 0)
+	if (upperbound > lowerbound)
 	{
 		index_pivot = quick_sort_partition(array, lowerbound, upperbound, size);
 		quick_sort_recurision(array, lowerbound, index_pivot - 1, size);
@@ -67,6 +67,5 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
-
 	quick_sort_recurision(array, 0, size - 1, size);
 }
