@@ -24,9 +24,9 @@ int quick_sort_partition(int *array, int lowerbound, int upperbound,
 			i++;
 			if (j != i)
 			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
+				temp = array[j];
+				array[j] = array[i];
+				array[i] = temp;
 				print_array(array, size);
 			}
 		}
